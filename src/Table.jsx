@@ -1,7 +1,16 @@
+import { useState } from 'react';
 import { data } from './data' //  используем начальные данные
 import './Table.css'
 
 function Table() {
+	const [users, setUsers] = useState(data);
+
+	function handleDelete(id) {
+		setUsers(users.filter((user) => {
+			return user._id !== id;
+		}));
+	};
+
 	return (
 		<>
 			<h1>Table</h1>
@@ -14,12 +23,12 @@ function Table() {
 					</tr>
 				</thead>
 				<tbody>
-			{data.map((user) => (
+			{users.map((user) => (
             <tr key={user._id} >
              <td>{user.name}</td>
              <td>{user.age}</td>
              <td>
-			 <button>
+			 <button onClick={() => handleDelete(user._id)}>
 				Удалить
 	  		 </button>
 			 </td>
