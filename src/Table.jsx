@@ -5,7 +5,8 @@ import './Table.css'
 function Table() {
 	const [users, setUsers] = useState(data);
 
-	function handleDelete(id) {
+	function handleDelete(user,id) {
+		console.log(user);
 		setUsers(users.filter((user) => {
 			return user._id !== id;
 		}));
@@ -28,7 +29,7 @@ function Table() {
              <td>{user.name}</td>
              <td>{user.age}</td>
              <td>
-			 <button onClick={() => handleDelete(user._id)}>
+			 <button onClick={() => handleDelete(user, user._id)}>
 				Удалить
 	  		 </button>
 			 </td>
